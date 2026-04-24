@@ -60,6 +60,12 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" dir="ltr">
+      <head>
+        {/* Performance: preconnect to image CDNs used across the site */}
+        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://ae01.alicdn.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.aliexpress.com" />
+      </head>
       <body className="flex min-h-screen flex-col">
         <JsonLd data={organizationJsonLd()} />
         <JsonLd data={websiteJsonLd()} />

@@ -2,15 +2,24 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Hero } from "@/components/Hero";
 import { ProductGrid } from "@/components/ProductGrid";
-import { getFeaturedProducts, getTrendingProducts } from "@/lib/products";
-import { getAllCategories } from "@/lib/products";
-import { buildMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { getFeaturedProducts, getTrendingProducts, getAllCategories } from "@/lib/products";
+import { buildMetadata, itemListJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
-  title: `${siteConfig.name} – ${siteConfig.tagline}`,
-  description: siteConfig.description,
+  title: `${siteConfig.name} – Best Selling AliExpress Deals, Updated Daily`,
+  description:
+    "Hand-picked best selling AliExpress products with verified ratings, free shipping and up to 70% off. Electronics, home, beauty, fashion and fitness — curated daily.",
   path: "/",
+  keywords: [
+    "best selling aliexpress products",
+    "aliexpress best deals",
+    "top aliexpress finds",
+    "aliexpress cheap gadgets",
+    "aliexpress trending products 2026",
+    "aliexpress free shipping deals",
+  ],
 });
 
 export default function HomePage() {
@@ -20,6 +29,7 @@ export default function HomePage() {
 
   return (
     <>
+      <JsonLd data={itemListJsonLd(featured, "Featured Best Sellers on AliExpress", "/")} />
       <Hero />
 
       <section aria-labelledby="featured" className="container-lg py-12">
